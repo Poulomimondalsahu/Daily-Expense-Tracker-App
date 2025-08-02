@@ -1,0 +1,40 @@
+BoxLayout:
+    orientation: 'vertical'
+    padding: 10
+    spacing: 10
+
+    Label:
+        text: 'Daily Expense Tracker'
+        font_size: 24
+        size_hint_y: None
+        height: 40
+
+    TextInput:
+        id: description_input
+        hint_text: 'Description'
+        multiline: False
+
+    TextInput:
+        id: amount_input
+        hint_text: 'Amount'
+        multiline: False
+        input_filter: 'float'
+
+    Button:
+        text: 'Add Expense'
+        on_press: app.add_expense(description_input.text, amount_input.text)
+
+    Label:
+        text: 'Expenses'
+        font_size: 20
+        size_hint_y: None
+        height: 30
+
+    ListView:
+        id: expense_list
+        adapter:
+            ListAdapter(data=[], cls=ListItemButton)
+
+    Button:
+        text: 'Clear All'
+        on_press: app.clear_expenses()
